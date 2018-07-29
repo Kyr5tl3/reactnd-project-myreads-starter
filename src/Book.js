@@ -4,7 +4,17 @@ import Shelf from "./Shelf.js"
 import './App.css'
 
 class Book extends Component {
+  constructor(props){
+    super(props);
+    this.changeShelf = this.changeShelf.bind(this);
+  }
 
+ changeShelf(books){
+   books.preventDefault()
+   this.setState({
+     shelfValue: ''
+   })
+ }
   render(){
     return(
       <ol className="books-grid">
@@ -14,7 +24,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.coverURL})`}}>
             </div>
-              <Shelf />
+              <Shelf changeShelf={this.changeShelf}/>
           </div>
             <div className="book-title">{book.title}</div>
             <div className="book-authors">{book.author}</div>

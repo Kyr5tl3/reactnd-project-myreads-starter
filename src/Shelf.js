@@ -1,22 +1,11 @@
 import React, {Component} from 'react'
 import './App.css'
 
-class Shelf extends Component {
-  getInitialState(){
-        return {selectValue:'currentlyReading'};
-    },
-
-  handleChange(e){
-      this.setState({selectValue:e.target.value});
-    },
-
+class Shelf extends Component{
   render(){
     return(
       <div className="book-shelf-changer">
-        <select
-          value={this.state.selectValue}
-          onChange={this.handleChange}
-        >
+        <select onChange={this.props.onSelectShelf}/>
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
@@ -24,7 +13,7 @@ class Shelf extends Component {
           <option value="none">None</option>
         </select>
       </div>
- )}
+ )};
 }
 
 export default Shelf
