@@ -1,21 +1,11 @@
 import React, {Component} from 'react'
 import BooksApp from "./App.js"
-import Shelf from "./Shelf.js"
+// import Shelf from "./Shelf.js"
 import './App.css'
 
 class Book extends Component {
-  constructor(props){
-    super(props);
-    this.changeShelf = this.changeShelf.bind(this);
-  }
 
- changeShelf(books){
-   books.preventDefault()
-   this.setState({
-     shelfValue: ''
-   })
- }
-  render(){
+ render(){
     return(
       <ol className="books-grid">
       {this.props.books.map((book) => (
@@ -24,10 +14,18 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.coverURL})`}}>
             </div>
-              <Shelf changeShelf={this.changeShelf}/>
+            <div className="book-shelf-changer">
+              <select onChange={this.changeShelf}>
+                <option value="move" disabled>Move to...</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="wantToRead">Want to Read</option>
+                <option value="read">Read</option>
+              </select>
+            </div>
           </div>
             <div className="book-title">{book.title}</div>
-            <div className="book-authors">{book.author}</div>
+            <div className="book-authors">{book.authors}</div>
+            <div className="book-authors">{book.shelf}</div>
           </div>
       </li>
    ))}
