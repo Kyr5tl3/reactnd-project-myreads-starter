@@ -3,9 +3,7 @@ import React from 'react'
 import './App.css'
 import BookShelf from './Bookshelf.js'
 import Book from './Book.js'
-
-
-
+import PropTypes from 'prop-types';
 
 class BooksApp extends React.Component {
   state = {
@@ -47,9 +45,23 @@ class BooksApp extends React.Component {
     }]
   }
 
+  // 
+  // changeShelf = (event) => {
+  //   var shelfState = this.setState(book => ({...book,shelf: {...book.shelf}
+  //     this.setState({ shelfState: event.target.value });
+  //   }))};
+  // changeShelf({book}) {
+  //   this.setState({books: {...this.state.books, [book.shelf]: book.value}});
+  // }
+  // changeShelf = (book) => {
+  //     this.setState((state)) => ({
+  //       books: state.contacts.find((b) =>c.shelf )
+  //     }));
+  //   };
+
   render() {
     return (
-      <BookShelf books={this.state.books} />
+      <BookShelf books={this.state.books} updateShelf={this.state.changeShelf}/>
     )
   }
 }
