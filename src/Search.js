@@ -1,8 +1,10 @@
 import React from 'react'
-import Book from './Book';
 import './App.css'
+import Book from './Book.js'
+import PropTypes from 'prop-types'
 
-class Search extends React.Component{
+
+class Search extends React.Component {
 
   render(){
     return(
@@ -28,5 +30,6 @@ class Search extends React.Component{
       </div>
     )
   }
+}
 
 export default Search

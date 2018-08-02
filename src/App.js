@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './Bookshelf.js'
+import Search from './Search.js'
 
 
 class BooksApp extends React.Component {
