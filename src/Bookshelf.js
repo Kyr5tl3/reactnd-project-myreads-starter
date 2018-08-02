@@ -1,8 +1,12 @@
 import React from 'react'
 import './App.css'
 import Book from './Book.js'
+import PropTypes from 'prop-types'
 
   class BookShelf extends React.Component {
+    // static propTypes = {
+    //   books: PropTypes.array.isRequired,
+    // }
 
     render() {
 
@@ -16,7 +20,7 @@ import Book from './Book.js'
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <Book books={this.props.books.filter((book) => (book.shelf === "currentlyReading"))} updateShelf={this.props.changeShelf} />
+                <Book books={this.props.books.filter((book) => (book.shelf === "currentlyReading"))} toUpdateShelf={this.props.updateShelf} />
               </div>
             </div>
           </div>

@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import BooksApp from "./App.js"
-// import Shelf from "./Shelf.js"
 import './App.css'
+import PropTypes from 'prop-types'
 
 class Book extends Component {
-
+  // static propTypes = {
+  //   books: PropTypes.array.isRequired,
+  // }
  render(){
 
     return(
@@ -16,7 +17,7 @@ class Book extends Component {
             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.coverURL})`}}>
             </div>
             <div className="book-shelf-changer">
-              <select value={book.shelf} onChange={this.changeShelf}>
+              <select onChange={this.props.toUpdateShelf}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
