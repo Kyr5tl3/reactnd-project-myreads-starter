@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react';
 import './App.css'
 import Book from './Book.js'
 import PropTypes from 'prop-types'
 
 
-class Search extends React.Component {
+class Search extends Component {
 
   render(){
     return(
-      <div className="app">
         <div className="search-books">
           <div className="search-books-bar">
             <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
@@ -27,7 +26,6 @@ class Search extends React.Component {
             <ol className="books-grid"></ol>
           </div>
         </div>
-      </div>
     )
   }
 }

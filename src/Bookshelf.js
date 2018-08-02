@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './App.css'
 import Book from './Book.js'
 import PropTypes from 'prop-types'
-import Search from './Search.js'
+// import Search from './Search.js'
 
-  class BookShelf extends React.Component {
+  class BookShelf extends Component {
     static propTypes = {
       books: PropTypes.array.isRequired,
     }
@@ -46,8 +47,8 @@ import Search from './Search.js'
             </div>
           </div>
         </div>
-        <div className="open-search">
-          <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+        <div className='open-search'>
+        <Link to='/search' >Add a book</Link>
         </div>
       </div>
 
