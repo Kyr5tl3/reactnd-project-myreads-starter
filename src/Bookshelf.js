@@ -4,9 +4,9 @@ import Book from './Book.js'
 import PropTypes from 'prop-types'
 
   class BookShelf extends React.Component {
-    // static propTypes = {
-    //   books: PropTypes.array.isRequired,
-    // }
+    static propTypes = {
+      books: PropTypes.array.isRequired,
+    }
 
     render() {
 

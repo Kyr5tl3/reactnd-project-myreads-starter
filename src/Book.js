@@ -1,20 +1,20 @@
 import React, {Component} from 'react'
 import './App.css'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 class Book extends Component {
   // static propTypes = {
-  //   books: PropTypes.array.isRequired,
+  //   Books: PropTypes.array.isRequired,
   // }
- render(){
 
+ render(){
     return(
       <ol className="books-grid">
       {this.props.books.map((book) => (
-      <li key={book.coverURL}>
+      <li key={book.id}>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.coverURL})`}}>
+            <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}>
             </div>
             <div className="book-shelf-changer">
               <select onChange={this.props.toUpdateShelf}>
