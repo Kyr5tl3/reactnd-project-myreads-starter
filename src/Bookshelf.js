@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import Book from './Book.js'
 import PropTypes from 'prop-types'
+import Search from './Search.js'
 
   class BookShelf extends React.Component {
     static propTypes = {
