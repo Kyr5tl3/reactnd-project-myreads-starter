@@ -1,16 +1,13 @@
 import React, {Component} from 'react'
 import './App.css'
-// import PropTypes from 'prop-types'
 
 class Book extends Component {
-  // static propTypes = {
-  //   Books: PropTypes.array.isRequired,
-  // }
 
  render(){
+   const {shelvedBooks} = this.props
     return(
       <ol className="books-grid">
-      {this.props.books.map((book) => (
+      {this.props.shelvedBooks.map((book) => (
       <li key={book.id}>
         <div className="book">
           <div className="book-top">

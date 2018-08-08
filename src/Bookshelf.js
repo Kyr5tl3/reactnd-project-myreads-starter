@@ -10,7 +10,14 @@ import PropTypes from 'prop-types'
       books: PropTypes.array.isRequired,
     }
 
+    state = {};
+
     render() {
+
+      const {books} = this.props;
+      const currentlyReading = books.filter((book) => (book.shelf === "currentlyReading"));
+      const wantToRead = books.filter((book) => (book.shelf === "wantToRead"));
+      const read = books.filter((book) => (book.shelf === "read"));
 
       return (
         <div className="list-books">
@@ -22,7 +29,7 @@ import PropTypes from 'prop-types'
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <Book books={this.props.books.filter((book) => (book.shelf === "currentlyReading"))} toUpdateShelf={this.props.updateShelf} />
+                <Book shelvedBooks={currentlyReading} toUpdateShelf={this.props.updateShelf} />
               </div>
             </div>
           </div>
@@ -32,7 +39,9 @@ import PropTypes from 'prop-types'
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
-                <Book books={this.props.books.filter((book) => (book.shelf === "wantToRead"))} />
+                <ol className="books-grid">
+                  <Book shelvedBooks={wantToRead} toUpdateShelf={this.props.updateShelf} />
+                </ol>
               </div>
             </div>
           </div>
@@ -42,7 +51,7 @@ import PropTypes from 'prop-types'
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <Book books={this.props.books.filter((book) => (book.shelf === "read"))} />
+                <Book shelvedBooks={read} toUpdateShelf={this.props.updateShelf} />
               </div>
             </div>
           </div>
