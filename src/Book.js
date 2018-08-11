@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import './App.css'
 
-class Book extends Component {
+class Book extends React.Component {
 
  render(){
-   const {shelvedBooks} = this.props
+   const {book} = this.props
     return(
       <ol className="books-grid">
-      {this.props.shelvedBooks.map((book) => (
-      <li key={book.id}>
+      <li>
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}>
@@ -27,7 +26,6 @@ class Book extends Component {
             <div className="book-authors">{book.shelf}</div>
           </div>
       </li>
-   ))}
  </ol>
  )}
 }

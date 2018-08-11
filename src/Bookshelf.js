@@ -29,7 +29,12 @@ import PropTypes from 'prop-types'
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <Book shelvedBooks={currentlyReading} toUpdateShelf={this.props.updateShelf} />
+              <ol className="books-grid">
+              {this.props.books.filter((book) => {
+               return book.shelf == "currentlyReading";}).map((book)=>{
+                return <Book book={book} key={book.id}/>
+              })}
+                </ol>
               </div>
             </div>
           </div>
@@ -40,7 +45,10 @@ import PropTypes from 'prop-types'
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  <Book shelvedBooks={wantToRead} toUpdateShelf={this.props.updateShelf} />
+                {this.props.books.filter((book) => {
+                 return book.shelf == "wantToRead";}).map((book)=>{
+                  return <Book book={book} key={book.id}/>
+                })}
                 </ol>
               </div>
             </div>
@@ -51,7 +59,13 @@ import PropTypes from 'prop-types'
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <Book shelvedBooks={read} toUpdateShelf={this.props.updateShelf} />
+              <ol className="books-grid">
+              {this.props.books.filter((book) => {
+               return book.shelf == "read";}).map((book)=>{
+                return <Book book={book} key={book.id}/>
+              })
+            }
+                </ol>
               </div>
             </div>
           </div>
