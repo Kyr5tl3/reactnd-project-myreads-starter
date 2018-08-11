@@ -32,7 +32,7 @@ import PropTypes from 'prop-types'
               <ol className="books-grid">
               {this.props.books.filter((book) => {
                return book.shelf == "currentlyReading";}).map((book)=>{
-                return <Book book={book} key={book.id}/>
+                return <Book book={book} key={book.id} toUpdateShelf={this.props.updateShelf} />
               })}
                 </ol>
               </div>
@@ -47,7 +47,7 @@ import PropTypes from 'prop-types'
                 <ol className="books-grid">
                 {this.props.books.filter((book) => {
                  return book.shelf == "wantToRead";}).map((book)=>{
-                  return <Book book={book} key={book.id}/>
+                  return <Book book={book} key={book.id} toUpdateShelf={this.props.updateShelf} />
                 })}
                 </ol>
               </div>
@@ -62,7 +62,7 @@ import PropTypes from 'prop-types'
               <ol className="books-grid">
               {this.props.books.filter((book) => {
                return book.shelf == "read";}).map((book)=>{
-                return <Book book={book} key={book.id}/>
+                return <Book book={book} key={book.id} toUpdateShelf={this.props.updateShelf} />
               })
             }
                 </ol>

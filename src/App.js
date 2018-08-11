@@ -41,7 +41,7 @@ componentDidMount = () => {
       <div className="app">
         <Route exact path ='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>
         )}/>
-      <Route path='/search' render={() => (<Search/>)}/>
+      <Route path='/search' render={() => (<Search updateShelf={this.changeShelf}/>)}/>
       </div>
     )
   }
