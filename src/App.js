@@ -24,14 +24,19 @@ class BooksApp extends Component {
   changeShelf = (newBook, shelf) => {
     let newShelf = newBook.target.value;
     let newBookID = newBook.target.id;
+    console.log(newShelf);
+    console.log(newBookID);
     BooksAPI.update(newBook, shelf).then(change => {
       BooksAPI.getAll().then((books) => {
-        let thisBook = books.filter((book) => (newBookID === book.id))
-        thisBook[0].shelf = newShelf
-        let newShelvedBooks = this.state.books.filter((book) => (newBookID !== book.id))
-        newShelvedBooks.push(thisBook[0]);
-        this.setState({books: newShelvedBooks})
-        thisBook = [];
+        let bookList = books;
+        console.log(books)
+        // let thisBook = books.filter((book) => (newBookID === book.id))
+        // thisBook[0].shelf = newShelf
+        // console.log(thisBook);
+        // let newShelvedBooks = this.state.books.filter((book) => (newBookID !== book.id))
+        // newShelvedBooks.push(thisBook[0]);
+        // this.setState({books: newShelvedBooks})
+        // thisBook = [];
       })
     })
   }
@@ -42,7 +47,7 @@ class BooksApp extends Component {
       <div className="app">
         <Route exact path ='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>
         )}/>
-      <Route path='/search' render={() => (<Search updateShelf={this.changeShelf}
+      <Route path='/search' render={() => (<Search updateShelf={this.changeShelf} books={this.state.books}
       handlingClick={this.handleClick}/>
     )}/>
       </div>
