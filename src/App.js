@@ -15,34 +15,56 @@ class BooksApp extends Component {
 
   state = {books: []}
 
-  componentDidMount = () => {
+  componentDidMount() {
+
     BooksAPI.getAll().then((books) => {
       this.setState({books})
-    });
-  }
-
-  changeShelf = (newBook, shelf) => {
-    let newShelf = newBook.target.value;
-    let newBookID = newBook.target.id;
-    console.log(newShelf);
-    console.log(newBookID);
-    BooksAPI.update(newBook, shelf).then(change => {
-      BooksAPI.getAll().then((books) => {
-        let bookList = books;
-        console.log(books)
-        // let thisBook = books.filter((book) => (newBookID === book.id))
-        // thisBook[0].shelf = newShelf
-        // console.log(thisBook);
-        // let newShelvedBooks = this.state.books.filter((book) => (newBookID !== book.id))
-        // newShelvedBooks.push(thisBook[0]);
-        // this.setState({books: newShelvedBooks})
-        // thisBook = [];
-      })
     })
   }
 
 
+
+  changeShelf = (book, shelf) => {
+
+        let moveBookID = book.target.id
+        let currentBooks = [...this.state.books]
+        let indexToMove = currentBooks.findIndex(book => book.id === moveBookID)
+        let newBookToUpdate = Object.assign({}, currentBooks[indexToMove], {
+            shelf: book.target.value
+        });
+        let newShelf = book.target.value
+
+        if (indexToMove === -1){
+
+          BooksAPI.get(moveBookID)
+                  .then(addBook => {
+                    let newBookToAdd = Object.assign({}, addBook, {
+                      shelf: newShelf
+                    })
+
+                    console.log('newBookToAdd',newBookToAdd)
+                    })
+                    .then((newBook) => this.setState(state => ({
+                      books: [currentBooks.push(newBook)]
+                    })))
+
+                    return this.state.books
+                    console.log('state from new',this.state.books)
+
+        } else {
+          this.setState(state => ({
+              books: [...currentBooks.slice(0, indexToMove), newBookToUpdate]
+            }))
+            console.log('state from existing',this.state.books)
+            return this.state.books
+      }
+      console.log('overall state',this.state.books)
+    }
+
+
+
   render() {
+    console.log('check state again',this.state.books)
     return (
       <div className="app">
         <Route exact path ='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>

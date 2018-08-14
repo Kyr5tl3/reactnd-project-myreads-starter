@@ -15,9 +15,9 @@ import PropTypes from 'prop-types'
     render() {
 
       const {books} = this.props;
-      const currentlyReading = books.filter((book) => (book.shelf === "currentlyReading"));
-      const wantToRead = books.filter((book) => (book.shelf === "wantToRead"));
-      const read = books.filter((book) => (book.shelf === "read"));
+      // const currentlyReading = books.filter((book) => (book.shelf === "currentlyReading"));
+      // const wantToRead = books.filter((book) => (book.shelf === "wantToRead"));
+      // const read = books.filter((book) => (book.shelf === "read"));
 
       return (
         <div className="list-books">
@@ -31,7 +31,7 @@ import PropTypes from 'prop-types'
               <div className="bookshelf-books">
               <ol className="books-grid">
               {this.props.books.filter((book) => {
-               return book.shelf == "currentlyReading";}).map((book)=>{
+               return book.shelf === "currentlyReading";}).map((book)=>{
                 return <Book book={book} key={book.id} toUpdateShelf={this.props.updateShelf} />
               })}
                 </ol>
@@ -46,7 +46,7 @@ import PropTypes from 'prop-types'
               <div className="bookshelf-books">
                 <ol className="books-grid">
                 {this.props.books.filter((book) => {
-                 return book.shelf == "wantToRead";}).map((book)=>{
+                 return book.shelf === "wantToRead";}).map((book)=>{
                   return <Book book={book} key={book.id} toUpdateShelf={this.props.updateShelf} />
                 })}
                 </ol>
@@ -61,7 +61,7 @@ import PropTypes from 'prop-types'
               <div className="bookshelf-books">
               <ol className="books-grid">
               {this.props.books.filter((book) => {
-               return book.shelf == "read";}).map((book)=>{
+               return book.shelf === "read";}).map((book)=>{
                 return <Book book={book} key={book.id} toUpdateShelf={this.props.updateShelf} />
               })
             }
