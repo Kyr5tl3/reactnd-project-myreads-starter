@@ -29,7 +29,7 @@ class BooksApp extends Component {
         let moveBookID = book.target.id
         let currentBooks = [...this.state.books]
         let indexToMove = currentBooks.findIndex(book => book.id === moveBookID)
-        let newBookToUpdate = Object.assign({}, currentBooks[indexToMove], {
+        let bookToMove = Object.assign({}, currentBooks[indexToMove], {
             shelf: book.target.value
         });
         let newShelf = book.target.value
@@ -51,7 +51,7 @@ class BooksApp extends Component {
         }
          else {
           this.setState(state => ({
-              books: [...currentBooks.slice(0, indexToMove), newBookToUpdate]
+              books: [...currentBooks.slice(0, indexToMove), bookToMove]
             }))
             return this.state.books
       }
@@ -61,13 +61,12 @@ class BooksApp extends Component {
 
 
   render() {
-    console.log('check state again',this.state.books)
+
+    console.log('check state',this.state.books)
     return (
       <div className="app">
         <Route exact path ='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>
         )}/>
-      <Route path='/search' render={() => (<Search updateShelf={this.changeShelf} books={this.state.books}
-      handlingClick={this.handleClick}/>
     )}/>
       </div>
     )
