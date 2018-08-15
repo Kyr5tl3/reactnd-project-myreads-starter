@@ -33,32 +33,29 @@ class BooksApp extends Component {
             shelf: book.target.value
         });
         let newShelf = book.target.value
-
+        let newBookToAdd = [];
         if (indexToMove === -1){
 
-          BooksAPI.get(moveBookID)
+        let newBookToAdd = BooksAPI.get(moveBookID)
                   .then(addBook => {
-                    let newBookToAdd = Object.assign({}, addBook, {
-                      shelf: newShelf
-                    })
+                    addBook.shelf = newShelf
+                    return addBook
+                    //
+                    // newBookToAdd = Object.assign({}, addBook, {
+                    //   shelf: newShelf
+                  }).then((book)=>{
+                    currentBooks.push(book)
+                    this.setState({books: currentBooks})
+                  })
 
-                    console.log('newBookToAdd',newBookToAdd)
-                    })
-                    .then((newBook) => this.setState(state => ({
-                      books: [currentBooks.push(newBook)]
-                    })))
-
-                    return this.state.books
-                    console.log('state from new',this.state.books)
-
-        } else {
+        }
+         else {
           this.setState(state => ({
               books: [...currentBooks.slice(0, indexToMove), newBookToUpdate]
             }))
-            console.log('state from existing',this.state.books)
             return this.state.books
       }
-      console.log('overall state',this.state.books)
+
     }
 
 
