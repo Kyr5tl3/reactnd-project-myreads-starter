@@ -29,42 +29,44 @@ class BooksApp extends Component {
         let moveBookID = book.target.id
         let currentBooks = [...this.state.books]
         let indexToMove = currentBooks.findIndex(book => book.id === moveBookID)
-        let newBookToUpdate = Object.assign({}, currentBooks[indexToMove], {
+        let bookToMove = Object.assign({}, currentBooks[indexToMove], {
             shelf: book.target.value
         });
         let newShelf = book.target.value
-
+        let newBookToAdd = [];
         if (indexToMove === -1){
 
-          BooksAPI.get(moveBookID)
+        let newBookToAdd = BooksAPI.get(moveBookID)
                   .then(addBook => {
-                    let newBookToAdd = Object.assign({}, addBook, {
-                      shelf: newShelf
-                    })
+                    addBook.shelf = newShelf
+                    return addBook
+                    //
+                    // newBookToAdd = Object.assign({}, addBook, {
+                    //   shelf: newShelf
+                  }).then((book)=>{
+                    currentBooks.push(book)
+                    this.setState({books: currentBooks})
+                  })
 
-                    console.log('newBookToAdd',newBookToAdd)
-                    })
-                    .then((newBook) => this.setState(state => ({
-                      books: [currentBooks.push(newBook)]
-                    })))
-
-                    return this.state.books
-                    console.log('state from new',this.state.books)
-
-        } else {
-          this.setState(state => ({
-              books: [...currentBooks.slice(0, indexToMove), newBookToUpdate]
+        }
+         else {
+           currentBooks = currentBooks.filter(function(theBook){
+             return theBook.id !== moveBookID
+           })
+           currentBooks.push(bookToMove)
+           this.setState(state => ({
+              books: currentBooks
             }))
-            console.log('state from existing',this.state.books)
             return this.state.books
       }
-      console.log('overall state',this.state.books)
+
     }
 
 
 
   render() {
-    console.log('check state again',this.state.books)
+
+    console.log('check state',this.state.books)
     return (
       <div className="app">
         <Route exact path ='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>
