@@ -5,7 +5,7 @@ A react application which manages a library of books into the categories (shelve
 - Want to Read
 - Read
 
-![MyReads screenshot](src/images/myreads screenshot.JPG)
+![MyReads screenshot](https://github.com/Kyr5tl3/reactnd-project-myreads-starter/blob/master/src/images/myreads%20screenshot.JPG)
 
 Users can search for books and assign to relevant shelf.
 
