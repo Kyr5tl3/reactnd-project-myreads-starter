@@ -44,8 +44,8 @@ class BooksApp extends Component {
         }
       } else {
         BooksAPI.getAll().then(books => {
-            this.setState({ books });
-          });
+          this.setState({books});
+        });
       }
     }
   }
