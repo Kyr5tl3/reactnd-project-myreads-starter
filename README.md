@@ -5,7 +5,7 @@ A react application which manages a library of books into the categories (shelve
 - Want to Read
 - Read
 
-![MyReads screenshot](./src/images/myreads screenshot.JPG "MyReads screenshot")
+![MyReads screenshot](src/images/myreads screenshot.JPG)
 
 Users can search for books and assign to relevant shelf.
 
