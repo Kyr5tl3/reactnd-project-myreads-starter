@@ -42,6 +42,10 @@ class BooksApp extends Component {
           // handle empty string
           this.setState({[key]: value});
         }
+      } else {
+        BooksAPI.getAll().then(books => {
+            this.setState({ books });
+          });
       }
     }
   }
@@ -88,8 +92,6 @@ class BooksApp extends Component {
   }
 
   render() {
-
-    console.log('check state', this.state.books)
     return (<div className="app">
       <Route exact="exact" path='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>)}/>
       <Route path='/search' render={() => (<Search updateShelf={this.changeShelf} books={this.state.books} handlingClick={this.handleClick}/>)}/>
