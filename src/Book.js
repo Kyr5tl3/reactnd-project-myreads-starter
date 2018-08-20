@@ -21,6 +21,7 @@ class Book extends React.Component {
             <div className="book-shelf-changer">
               <select id={book.id} value={book.shelf} onChange={this.props.toUpdateShelf}>
                 <option value="move" disabled="disabled">Move to...</option>
+                <option value="none">None</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
