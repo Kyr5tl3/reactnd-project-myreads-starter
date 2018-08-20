@@ -45,7 +45,7 @@ class Search extends Component {
                 you don't find a specific author or title. Every search is limited by search terms.
               */
           }
-          <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={(e) => {
+          <input type="text" placeholder="Search by title or author" onChange={(e) => {
               this.searchBooks(e.target.value)
             }}/>
         </div>
