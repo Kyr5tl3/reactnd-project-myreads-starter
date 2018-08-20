@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Route} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './Bookshelf.js'
@@ -92,10 +92,14 @@ class BooksApp extends Component {
   }
 
   render() {
-    return (<div className="app">
-      <Route exact="exact" path='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>)}/>
-      <Route path='/search' render={() => (<Search updateShelf={this.changeShelf} books={this.state.books} handlingClick={this.handleClick}/>)}/>
-    </div>)
+    return (
+      <div className="app">
+        <Switch>
+          <Route exact="exact" path='/' render={() => (<BookShelf books={this.state.books} updateShelf={this.changeShelf}/>)}/>
+          <Route path='/search' render={() => (<Search updateShelf={this.changeShelf} books={this.state.books} handlingClick={this.handleClick}/>)}/>
+        </Switch>
+      </div>
+    )
   }
 }
 
