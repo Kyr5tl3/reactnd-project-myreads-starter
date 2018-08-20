@@ -66,16 +66,24 @@ class BooksApp extends Component {
     let bookToMove = Object.assign({}, currentBooks[indexToMove], {shelf: book.target.value});
     let newShelf = book.target.value
     let newBookToAdd = [];
-    if (indexToMove === -1) {
 
+    if (newShelf == 'remove'){
+        currentBooks = currentBooks.filter(function(theBook) {
+          return theBook.id !== moveBookID
+        })
+        this.setState(state => ({books: currentBooks}))
+        return this.state.books
+        let removeMessage = book.title + ' removed from bookcase';
+        alert(removeMessage)
+    } else if (indexToMove === -1) {
       let newBookToAdd = BooksAPI.get(moveBookID).then(addBook => {
         addBook.shelf = newShelf
         return addBook
       }).then((book) => {
         currentBooks.push(book)
         this.setState({books: currentBooks})
-        let message = book.title + ' added to ' + book.shelf;
-        alert(message)
+        let newBookMessage = book.title + ' added to ' + book.shelf;
+        alert(newBookMessage)
       })
 
     } else {
